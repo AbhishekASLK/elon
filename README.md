@@ -1,308 +1,148 @@
-## 1. Choose the correct option
+# Abstract Class
 
+
+## 1. Will this code works?
 ```java
+abstract class A {
+
+}
+
 class Test {
     public static void main(String[] args) {
-        for (;;) {
-            System.out.println("Hello, World!");
-        }
+        A a = new A();
     }
 }
-``` 
+```
 
-## Options:
-
-1. "Hello, World!" is printed only once
-2. No output is printed
-3. "Hello, World!" prints infinitely
-4. Compilation error
-
-## 2. When we create child class object, parent class object is created or not? Give me proof
-
-## Options
-
-1. Yes
-2. No
-
-## 3. What is the output of this code?
+## 2 What is the output of this code?
 
 ```java
+abstract class A {
+    void show() {
+        System.out.println("Hello");
+    }
+}
+
 class Test {
-    String name = "AbhishekASLK";
-    Test(){
-        System.out.println(name);
-    }
     public static void main(String[] args) {
-        Test t = new Test();
+        A a = new A();
     }
 }
 ```
 
-## Options
-
-1. AbhishekASLK
-2. Compiler time Error
-3. Runtime Error
-4. Mujhe kya pata
-
-
-## 4. What is the output of this code?
+## 3 What is the output of the following code? abstract class can have constructor? 
 
 ```java
+abstract class A {
+    A() {
+        System.out.println("A constructor");
+    }
+}
+
+class B extends A {
+    B() {
+        System.out.println("B constructor");
+    }
+}
+
 class Test {
-    String name;
-    int age;
-    Test(){
-        System.out.println(name);
-        System.out.println(age);
-    }
     public static void main(String[] args) {
-        Test t = new Test();
+        A a = new B();
     }
 }
 ```
 
-## 5. What is the output of the below code?
+## 4 What is the use of constructor in abstract class?
+
+## 5 Will this work? why?
 
 ```java
-class Test {
-    Test(){
-        System.out.println(this);
-    }
-    public static void main(String[] args) {
-        Test t = new Test();
-    }
+abstract final class A {
+    // abstract class
 }
 ```
 
-## Answers:
-### 2.
-```java
-class Parent {
-    Parent(){
-        System.out.println(this.hashCode());
-    }
-}
-
-class Child extends Parent {
-    Child(){
-        System.out.println(this.hashCode());
-    }
-}
-
-public class Main
-{
-	public static void main(String[] args) {
-	    Child c = new Child();
-	    System.out.println(c.hashCode());	
-	}
-}
-```
-
-# 1. INHERITENCE
-
-```java
-class Parent {
-    void m1(){
-        System.out.println("m1");
-    }  
-}
-
-class Child extends Parent {
-    void m2(){
-        System.out.println("m2");
-    }
-}
-
-class Main {
-    public static void main(String[] args){
-        // 1.
-        Child c = new Child();
-        c.m1();
-        c.m2();
-
-        // 2.
-        Parent p1 = new Parent();
-        p1.m1();
-        p1.m2();
-
-        // 3.
-        Parent p2 = new Child();
-        p2.m1();
-        p2.m2();
-
-        // 4.
-        Child c2 = new Parent();
-        c2.m1();
-        c2.m2();
-
-        // reference means pointing to that object
-    }
-}
-```
-
-## Types of Inheritance
+# final keyword
 
 1. 
-2. 
-3. 
-4.
-5.
-6.
+```java
+final int x = 10;
+x = 20;
+```  
 
+2. 
+```
+final Student s = new Student();
+s = new Student(); 
+s.name = "Raj"; 
+```
+
+3. 
 ```java
 class A {
-    void m1(){
-        System.out.println("m1");
-    }  
-}
-
-class B {
-    void m2(){
-        System.out.println("m2");
+    final void show() {
+        System.out.println("Hello World");
     }
 }
 
-class C extends A, B {
-
+class B extends A {
+    void show() {
+        System.out.println("Bye World");
+    } 
 }
 ```
 
-### How interface overcome this problem?
+4. 
+```java
+final class A {
+    // code here
+}
+
+class B extends A {
+    // code here
+} 
+
+```
+
+Example: String class
+
+5. 
+```
+final int x;
+x = 10; 
+x = 20;
+```
+
+6. Can we create object of final class 
+```java
+final class A {
+    A() {
+        System.out.println("Hello");
+    }
+}
+```
+
+7. which you will choose for implementation of your project, interface or abstract class?
+which is good and which is bad
 
 ```java
 interface A {
     void m1();
 }
 
-interface B {
-    void m1();
+abstract class X {
+    abstract void m1();
 }
 
-class C implements A, B {
-
-    void m1() {
-        System.out.println("Implementation of m1");
-    }
-    public static void main(String[] args) {
-        C obj = new C();
-        obj.m1();
-    }
-}
-```
-
-# Do you think, above code will work?
-
-# Lets see how Python fix this?
-
-![](./multiple.png)
-
-```python
-
-class A:
-    def m1(self):
-        print("A: m1")
-
-class B:
-    def m1(self):
-        print("B: m1")
-
-class C(A, B):
-    pass 
-
-c = C()
-c.m1()
-```
-
-## Q. will this work?
-
-```java
-class A extends A {
-
-}
-```
-
-```java
-class A extends B {
-    
-}
-
-class B extends A {
-
-}
-```
-
-## Q. Every class has Object as a Parent
-
-
-```java
-class A {
-
-}
-
-class B extends A {
-
-}
-```
-
-![](./two_fathers.jpg)
-
-
-# super and this keywords
-
-## 1. 
-```java
-class Elon {
-    Elon (){
-        System.out.println("constructor");
-        super();
-    }
-}
-```
-
-## 2.
-```java
-class Elon {
-    Elon (){
-        super();
-        this();
-        System.out.println("constructor");
-    }
-}
-```
-
-## 3. 
-
-```java
-class Zuck {
+class Elon extends X {
     public void m1(){
-        super();
-        System.out.println("method");
+        // code
+    }
+}
+
+class Mark implements A {
+    public void m1(){
+        // code
     }
 }
 ```
-
-```java
-class Parent {
-    int x = 10;
-}
-
-class Child extends Parent {
-    int x = 20;
-
-    void showValues(int x) {
-        System.out.println(x); 
-        System.out.println(this.x); 
-        System.out.println(super.x); 
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Child obj = new Child();
-        obj.showValues(30); 
-    }
-}
-```
-
-## What is difference between super,this and super(), this()?
