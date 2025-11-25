@@ -235,3 +235,208 @@ class Test {
 </details>
 
 ### Interview Question: Difference between final, finally, finalize()
+
+
+------------------------------
+
+### Explain throw and throws
+
+```java
+class Test {
+    public static void main(String[] args) {
+        System.out.println(10/0);
+    }
+}
+```
+
+![](./jvm.png)
+
+```java
+class Test {
+    public static void main(String[] args) {
+        throw new ArithmeticException("/ by zero");
+    }
+}
+```
+
+```java
+class Test {
+    static ArithmeticException e = new ArithmeticException("/ by zero");
+    public static void main(String[] args) {
+        throw e;
+    }
+}
+```
+
+
+<details>
+    <summary>Output: </summary>
+
+    Exception in thread "main" java.lang.ArithmeticException: / by zero
+        at Test.<clinit>(test.java:2)
+</details>
+
+```java
+class Test {
+    static ArithmeticException e;
+    public static void main(String[] args) {
+        throw e;
+    }
+}
+```
+
+<details>
+    <summary>Output: </summary>
+
+    Exception in thread "main" java.lang.NullPointerException
+        at Test.main(test.java:4)
+</details>
+
+
+```java
+class Test {
+    public static void main(String[] args) {
+        System.out.println(10/0);
+        System.out.println("elon");
+    }
+}
+```
+
+
+```java
+class Test {
+    public static void main(String[] args) {
+        throw new ArithmeticException("/ by zero");
+        System.out.println("elon");
+    }
+}
+```
+
+```java
+class Elon {
+    public static void main(String[] args) {
+        throw new Elon();
+    }
+}
+```
+
+```java
+class Elon extends RuntimeException {
+    public static void main(String[] args) {
+        throw new Elon();
+    }
+}
+```
+
+```java
+import java.io.PrintWriter;
+
+class Elon {
+    public static void main(String[] args) {
+        exploreMars();
+    }
+
+    public static void exploreMars() {
+        colonizeMars();
+    }
+
+    public static void colonizeMars() {
+        PrintWriter writer = new PrintWriter("peter_thiel.txt");
+        writer.println("Colonizing Mars...");
+        writer.close();
+    }
+}
+```
+
+
+```java
+import java.io.PrintWriter;
+
+class Elon {
+    public static void main(String[] args) {
+        exploreMars();
+    }
+
+    public static void exploreMars() {
+        colonizeMars();
+    }
+
+    public static void colonizeMars() throws java.io.FileNotFoundException {
+        PrintWriter writer = new PrintWriter("peter_thiel.txt");
+        writer.println("Colonizing Mars...");
+        writer.close();
+    }
+}
+```
+
+### Will this code compile?
+
+```java
+class Elon {
+    public static void main(String[] args) {
+        throw new Exception("This is an exception");
+    }
+}
+```
+
+```java
+
+class Elon {
+    public static void main(String[] args) {
+        throw new Error("This is an exception");
+    }
+}
+```
+
+```java
+class Elon {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Hello, Elon!");
+        } catch (Exception e) {
+            // code
+        }
+    }
+}
+```
+
+```java
+class Elon {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Hello, Abhishek!");
+        } catch (Error e) {
+            // code
+        }
+    }
+}
+```
+
+### You have 5-10 minutes, use ChatGPT or Gemini and write a code which throw customized exception. If user has experience 0-2 then raise exception saying PrettyLittleBaby and if more than 2 then no worries print anything.
+
+```java
+// Custom Exception
+class PrettyLittleBabyException extends Exception {
+    PrettyLittleBabyException(String message) {
+        super(message);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+
+        int experience = 2; // change value to test
+
+        try {
+            if (experience >= 0 && experience <= 2) {
+                throw new PrettyLittleBabyException("PrettyLittleBaby: Experience too low!");
+            }
+
+            System.out.println("Great! You have good enough experience.");
+
+        } catch (PrettyLittleBabyException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
